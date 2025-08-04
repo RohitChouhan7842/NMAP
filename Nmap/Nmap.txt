@@ -1,0 +1,107 @@
+these are the all open PORT in MY system and the IP adresss
+is 
+-----------------------------------------------------------------------------------
+                                       IP Address:
+
+                                     192.168.29.29
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+                           Open ports
+-----------------------------------------------------------------------------------
+Using Nmap, the following ports were discovered on the target system:
+
+135/tcp   open     msrpc         Microsoft Windows RPC  
+137/tcp   filtered netbios-ns  
+139/tcp   open     netbios-ssn   Microsoft Windows netbios-ssn  
+445/tcp   open     microsoft-ds?  
+3306/tcp  open     mysql         MySQL (unauthorized access possible)  
+5040/tcp  open     unknown       Service not identified  
+7680/tcp  open     pando-pub?    Possibly related to Windows update delivery  
+33060/tcp open     mysqlx        MySQL X Protocol Listener  
+49664–49706/tcp open     msrpc   Multiple high ports used by Microsoft RPC services  
+
+Filtered port (137/tcp) indicates potential firewall or packet filtering blocking NetBIOS name service.
+
+These results highlight exposed services that may require further analysis for security hardening.
+
+135 , 3306 are the common port in the system 
+
+--------------------------------------------------------------------------------------------
+Critical Ports:
+
+445 (Microsoft-DS)
+
+Risk: Critical
+
+Threats: Exploited in WannaCry; widely abused SMB vulnerabilities.
+
+Mitigation: Disable SMBv1, restrict access, apply patches.
+--------------------------------------------------------------------------------------------
+High-Risk Ports:
+
+135 (MSRPC)
+
+Risk: High
+
+Threats: Remote code execution, lateral movement.
+
+Mitigation: Restrict RPC access, firewall rules.
+--------------------------------------------------------------------------------------------
+
+137 (NetBIOS-NS)
+
+Risk: High
+
+Threats: Information disclosure, enumeration attacks.
+
+Mitigation: Disable NetBIOS if unused.
+--------------------------------------------------------------------------------------------
+139 (NetBIOS-SSN)
+
+Risk: High
+
+Threats: SMBv1 vulnerabilities (ransomware, remote access).
+
+Mitigation: Disable SMBv1, use SMBv3 with encryption.
+--------------------------------------------------------------------------------------------
+3306 (MySQL)
+
+Risk: High
+
+Threats: Data theft, SQL injection if unauthorized.
+
+Mitigation: Strong authentication, network segmentation.
+--------------------------------------------------------------------------------------------
+49664–49706 (MSRPC Ephemeral Ports)
+
+Risk: High
+
+Threats: Unintentional exposure, information leakage.
+
+Mitigation: Firewall restrictions, monitor RPC traffic.
+--------------------------------------------------------------------------------------------
+Medium-Risk Ports
+5040 (DiagHub)
+
+Risk: Medium
+
+Threats: System telemetry exposure, privilege escalation CVEs.
+
+Mitigation: Disable if unused, restrict access.
+--------------------------------------------------------------------------------------------
+7680 (Delivery Optimization)
+
+Risk: Medium
+
+Threats: Update metadata leaks, elevation of privilege.
+
+Mitigation: Configure securely, limit exposure.
+--------------------------------------------------------------------------------------------
+33060 (MySQLX)
+
+Risk: Medium
+
+Threats: Exposes document store API.
+
+Mitigation: Restrict if unused, secure API access.
+--------------------------------------------------------------------------------------------
